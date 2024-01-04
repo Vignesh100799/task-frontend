@@ -13,32 +13,22 @@ const Dashboard = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        {tasks.map((item, index) => (
-          <div className="col-sm-6 my-2">
+        {tasks.map((item) => (
+          <div key={item._id} className="col-sm-6 my-2">
             <div className="card">
-              <div
-                key={index}
-                className="card-body"
-                style={{ marginBottom: "15px" }}
-              >
+              <div className="card-body" style={{ marginBottom: "15px" }}>
                 <h3 className="card-title">Title: {item.title}</h3>
                 <p className="card-text">To Do: {item.about}</p>
                 <footer className="blockquote-footer">Date: {item.date}</footer>
-                <Link to={`/edit-task/${item._id}`} className="btn btn-warning">
+                <Link to={`/edit-task/${item._id}`} className="btn btn-warning mr-2">
                   Edit
                 </Link>
-
-                <Link to={`/tasks/${item._id}`}>
-                  <button
-                    className="btn btn-info leftmargin"
-                    onClick={() => fetchSingletask(item._id)}
-                  >
-                    View
-                  </button>
+                <Link to={`/tasks/${item._id}`} className="btn btn-info mr-2">
+                  View
                 </Link>
                 <button
-                  onClick={() => deleteTask(params.id)}
-                  className="btn btn-danger leftmargin"
+                  onClick={() => deleteTask(item._id)}
+                  className="btn btn-danger"
                 >
                   Delete
                 </button>
